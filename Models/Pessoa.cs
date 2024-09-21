@@ -1,21 +1,11 @@
 namespace DesafioProjetoHospedagem.Models;
 
-public class Pessoa
+public class Pessoa(string nome, string sobrenome)
 {
-    public Pessoa() { }
-
-    public Pessoa(string nome)
-    {
-        Nome = nome;
-    }
-
-    public Pessoa(string nome, string sobrenome)
-    {
-        Nome = nome;
-        Sobrenome = sobrenome;
-    }
-
-    public string Nome { get; set; }
-    public string Sobrenome { get; set; }
-    public string NomeCompleto => $"{Nome} {Sobrenome}".ToUpper();
+    private string Nome { get; } = nome;
+    private string Sobrenome { get; } = sobrenome;
+    
+    public Pessoa(string nome) : this(nome, string.Empty) { }
+    
+    public string NomeCompleto => string.IsNullOrWhiteSpace(Sobrenome) ? Nome.ToUpper() : $"{Nome} {Sobrenome}".ToUpper();
 }
